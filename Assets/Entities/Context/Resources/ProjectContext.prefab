@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 4846566282954015935}
+  - {fileID: 4121574470889648293}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 302541389220855846}
-  - component: {fileID: 4846566282954015935}
+  - component: {fileID: 4121574470889648293}
   m_Layer: 0
   m_Name: Installer
   m_TagString: Untagged
@@ -95,7 +95,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5062231320743569914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4846566282954015935
+--- !u!114 &4121574470889648293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,10 +104,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3589964511304911872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32654717644f4832b484a35d5a60872e, type: 3}
+  m_Script: {fileID: 11500000, guid: d6668096ad864e8aaaf329b1dcf6bdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioService: {fileID: 534935119311114253}
 --- !u!1 &6346042771492629636
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +116,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8359261804107044146}
-  - component: {fileID: 534935119311114253}
   - component: {fileID: 4652100021186624116}
   m_Layer: 0
   m_Name: AudioService
@@ -141,22 +139,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5062231320743569914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &534935119311114253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6346042771492629636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f05cc165bf465ab87b2822cf7621c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioMixerGroup: {fileID: 24300002, guid: 8617ec7d8fb9e4c47887abdb8383592e, type: 2}
-  _wooshAudioEvent: {fileID: 11400000, guid: 7f6df5ff4edaed04eb96963b688715e7, type: 2}
-  _boolkAudioEvent: {fileID: 11400000, guid: 1e0a3d096f088114e8dc455fdc0104a4, type: 2}
-  _audioSource: {fileID: 4652100021186624116}
 --- !u!82 &4652100021186624116
 AudioSource:
   m_ObjectHideFlags: 0
