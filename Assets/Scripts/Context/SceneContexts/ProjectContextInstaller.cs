@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using Services;
+using Zenject;
 
 namespace Context.SceneContexts
 {
@@ -6,7 +7,7 @@ namespace Context.SceneContexts
     {
         public override void InstallBindings()
         {
-            
+            Container.BindInterfacesAndSelfTo<InputService>().FromNew().AsSingle().NonLazy();
         }
     }
 }

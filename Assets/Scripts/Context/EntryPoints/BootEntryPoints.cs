@@ -29,8 +29,6 @@ namespace Context.EntryPoints
 
         private async UniTask PlayIntroAsync()
         {
-            Vector2 startPos;
-        
             await _part1.DOAnchorPos(_targetPos1, 0.5f).SetEase(Ease.OutBack).AsyncWaitForCompletion();
             await _part2.DOAnchorPos(_targetPos2, 0.5f).SetEase(Ease.OutBack).AsyncWaitForCompletion();
             await _part3.DOAnchorPos(_targetPos3, 0.5f).SetEase(Ease.OutBack).AsyncWaitForCompletion();
