@@ -26,12 +26,11 @@ public class PlayerController : MonoBehaviour
     private Coroutine _ungroundCoroutine;
     private Vector2 _movementSmoothVelocity;
     private bool _waitingForUngrounded;
-    
-    public Health Health { get; private set; }
+
+    public Health Health { get; private set; } = new();
 
     private void Start()
     {
-        Health = new Health();
         Health.Init(3,3);
         _inputService.PlayerActions.Jump.performed += OnJump;
     }

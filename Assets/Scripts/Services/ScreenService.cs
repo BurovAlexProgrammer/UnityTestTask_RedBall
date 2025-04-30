@@ -40,6 +40,7 @@ namespace Services
     public enum SCREEN_ADDRESS
     {
         MainMenu,
-        GameScreen
+        GameScreen,
+        GameResultPopup
     }
 }

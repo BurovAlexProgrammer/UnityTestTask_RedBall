@@ -5,9 +5,9 @@ namespace GameObjects
 {
     public class Health
     {
-        private IReadOnlyReactiveProperty<bool> _isDead;
-        private readonly ReactiveProperty<int> _maxHp = new();
-        private readonly ReactiveProperty<int> _currHp = new();
+        public IReadOnlyReactiveProperty<bool> IsDead => _currHp.Select(x => x <= 0).ToReactiveProperty<bool>();
+        private readonly ReactiveProperty<int> _maxHp = new() {Value = 1};
+        private readonly ReactiveProperty<int> _currHp = new() {Value = 1};
 
         public IReadOnlyReactiveProperty<int> CurrHp => _currHp;
         public IReadOnlyReactiveProperty<int> MaxHp => _maxHp;
@@ -16,12 +16,11 @@ namespace GameObjects
         {
             _currHp.Value = currHp;
             _maxHp.Value = maxHp;
-            _isDead = _currHp.Select(x => x <= 0).ToReactiveProperty<bool>();
         }
         
         public void DealDamage(int damage)
         {
-            if (damage <= 0 || _isDead.Value) return;
+            if (damage <= 0 || IsDead.Value) return;
 
             _currHp.Value = Mathf.Clamp(_currHp.Value - damage, 0, int.MaxValue);
         }
