@@ -4,7 +4,6 @@ using AppCoreModule.Scripts.Extensions;
 using Common;
 using GameObjects;
 using Services;
-using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveForce = 10f;
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float maxSpeed = 8f;
+    [SerializeField] private float knockbackForceMultiplier = 0.33f;
 
     [Header("Debug")]
     [SerializeField] private bool _isGrounded;
@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Health.IsKnockedBack.Value) return;
+        
         MoveBall();
         LimitSpeed();
     }
@@ -61,6 +63,8 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMasks.Damage)
         {
+            var knockBackDirection = (transform.position - collision.transform.position).normalized;
+            Health.ApplyKnockBack(_rigidbody, knockBackDirection, jumpForce * knockbackForceMultiplier);
             Health.DealDamage(1);
         }
 
@@ -116,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (!_isGrounded) return;
+        if (!_isGrounded || Health.IsKnockedBack.Value) return;
 
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
