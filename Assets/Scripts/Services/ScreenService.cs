@@ -27,12 +27,24 @@ namespace Services
             return screen.GetComponent<BaseScreen>();
         }
 
-        public async UniTask OpenScreenAsync(SCREEN_ADDRESS screenAddress, bool clearPrevScreens = false)
+        public async UniTask<T> LoadScreenAsync<T>(SCREEN_ADDRESS screenAddress) where T : BaseScreen
         {
             var address = screenAddress.ToString();
             var resource = await Addressables.LoadAssetAsync<GameObject>(address);
-            var screen = resource.GetComponent<BaseScreen>();
-            await OpenScreenAsync(screen);
+            var screen = resource.GetComponent<T>();
+
+            return screen;
+        }
+        
+        public async UniTask OpenScreenAsync(SCREEN_ADDRESS screenAddress, bool clearPrevScreens = false)
+        {
+            var screen = await LoadScreenAsync<BaseScreen>(screenAddress);
+            await OpenScreenAsync(screen, clearPrevScreens);
+        }
+        
+        public async UniTask OpenScreenAsync(BaseScreen screen, bool clearPrevScreens = false)
+        {
+            await base.OpenScreenAsync(screen);
         }
     }
 

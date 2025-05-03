@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 6a6bb356ec841f344b0bfbba501ffc3b
   m_SerializeEntries:
+  - m_GUID: 7f2d37b6199c9824abf1a31cf629e045
+    m_Address: GameResultPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a66716ce4e7df7f42b5fd9cb76294795
     m_Address: GameScreen
     m_ReadOnly: 0

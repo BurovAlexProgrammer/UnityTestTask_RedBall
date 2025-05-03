@@ -20,7 +20,7 @@ namespace GameObjects
             _maxHp.Value = maxHp;
         }
         
-        public void DealDamage(int damage)
+        public void DealDamage(int damage, bool withKnockBack = true)
         {
             if (damage <= 0 || IsDead.Value) return;
 

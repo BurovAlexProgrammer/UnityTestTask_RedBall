@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using GameObjects;
 using UniRx;
 using Zenject;
 
@@ -28,13 +29,15 @@ namespace Services
         private void OnDead(bool isDead)
         {
             if (isDead)
-                GameOver();
+                GameOver().Forget();
         }
 
-        private void GameOver()
+        private async UniTask GameOver()
         {
             _inputService.PlayerActions.Disable();
-            _screenService.OpenScreenAsync(SCREEN_ADDRESS.GameResultPopup).Forget();
+            var popup = await _screenService.LoadScreenAsync<GameResultPopup>(SCREEN_ADDRESS.GameResultPopup);
+            _screenService.OpenScreenAsync(popup).Forget();
+            popup.Setup(false);
         }
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bb366d78f4424f9506fec183cf60b0, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  AudioEvents:
+  - Key: damage
+    AudioEvent: {fileID: 11400000, guid: 3579d99456f054c45a9940da7a694c12, type: 2}
+  - Key: jump
+    AudioEvent: {fileID: 11400000, guid: c4036bd10fdafec4a949015d3fb8a095, type: 2}
+  - Key: gameOver
+    AudioEvent: {fileID: 11400000, guid: f8d17ba41afa0ea43bc58ad5eb79f7cc, type: 2}

@@ -12,6 +12,7 @@ using Zenject;
 public class PlayerController : MonoBehaviour
 {
     [Inject] private InputService _inputService;
+    [Inject] private GameAudioService _audioService;
 
     [Header("Movement Settings")]
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -64,13 +65,25 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMasks.Damage)
         {
             var knockBackDirection = (transform.position - collision.transform.position).normalized;
+            _audioService.PlaySfx("damage");
             Health.ApplyKnockBack(_rigidbody, knockBackDirection, jumpForce * knockbackForceMultiplier);
             Health.DealDamage(1);
+            
         }
 
         if (collision.gameObject.layer == LayerMasks.Dead)
         {
             Health.DealDamage(Int32.MaxValue);
+            _audioService.PlaySfx("damage");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.layer == LayerMasks.Dead)
+        {
+            Health.DealDamage(Int32.MaxValue);
+            _audioService.PlaySfx("damage");
         }
     }
 
@@ -122,6 +135,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_isGrounded || Health.IsKnockedBack.Value) return;
 
+        _audioService.PlaySfx("jump");
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 }
