@@ -18,7 +18,8 @@ namespace Services
 
         private void Awake()
         {
-            _backCanvas.worldCamera = Camera.main;
+            if (_backCanvas != null)
+                _backCanvas.worldCamera = Camera.main;
         }
 
         public override void Init(bool fadeInOnAwake, TransitEffectSettings transitEffectSettings = default)

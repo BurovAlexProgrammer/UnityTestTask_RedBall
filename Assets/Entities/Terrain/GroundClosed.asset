@@ -10,28 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
-  m_Name: Sprite Shape Profile
+  m_Name: GroundClosed
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -180
-    m_End: 180
+  - m_Start: -53
+    m_End: 49
     m_Order: 0
     m_Sprites:
     - {fileID: -855298285791758126, guid: bc843efbf5718ed42a9571824d544a2b, type: 3}
+  - m_Start: 49
+    m_End: 136
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 301469809507776199, guid: d94610e8ca761ce4a90b249b053cb10b, type: 3}
+  - m_Start: -137
+    m_End: -53
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 301469809507776199, guid: d94610e8ca761ce4a90b249b053cb10b, type: 3}
+  - m_Start: 136
+    m_End: 223
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 301469809507776199, guid: d94610e8ca761ce4a90b249b053cb10b, type: 3}
   m_FillTexture: {fileID: 2800000, guid: 6d048524dca1a85439280907b8f6bd48, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - {fileID: 21300000, guid: c774a37a32fcd3a499e98dc274332fde, type: 3}
   - m_CornerType: 1
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - {fileID: 21300000, guid: cd0fe1e53064c944f999efcb41da2064, type: 3}
   - m_CornerType: 2
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - {fileID: -1278703167352923008, guid: 29204f16a9e142449ad55db71c9031cd, type: 3}
   - m_CornerType: 3
     m_Sprites:
-    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
+    - {fileID: 9050521545445052933, guid: 1b1916641acdd0948b6bf4a9e7cd642d, type: 3}
   - m_CornerType: 4
     m_Sprites:
     - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}

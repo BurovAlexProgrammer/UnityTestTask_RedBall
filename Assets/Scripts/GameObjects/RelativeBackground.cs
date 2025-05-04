@@ -21,7 +21,6 @@ namespace GameObjects
         private void LateUpdate()
         {
             var x = _playerController.Position.x / _moveDevider;
-            Debug.Log(x);
             _transform.position = new Vector3(x, _transform.position.y, _transform.position.z);
         }
     }
