@@ -21,15 +21,11 @@ namespace GameObjects
         [SerializeField] private Button _buttonMainMenu;
         private bool _isWin;
 
-        public void Setup(bool isWin)
+        public void Init(bool isWin)
         {
             _isWin = isWin;
             _winLabel.gameObject.SetActive(isWin);
             _gameOverLabel.gameObject.SetActive(!isWin);
-        }
-
-        private void OnEnable()
-        {
             PlaySound().Forget();
         }
 

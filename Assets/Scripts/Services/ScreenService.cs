@@ -1,4 +1,5 @@
-﻿using AppCoreModule.Scripts.UI.Screens;
+﻿using System;
+using AppCoreModule.Scripts.UI.Screens;
 using AppCoreModule.Scripts.UI.TransitEffects.Settings;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -11,7 +12,14 @@ namespace Services
     {
         [Inject] private DiContainer _diContainer;
 
+        [SerializeField] private Canvas _backCanvas;
+
         private Transform _screenContainer;
+
+        private void Awake()
+        {
+            _backCanvas.worldCamera = Camera.main;
+        }
 
         public override void Init(bool fadeInOnAwake, TransitEffectSettings transitEffectSettings = default)
         {
@@ -42,9 +50,9 @@ namespace Services
             await OpenScreenAsync(screen, clearPrevScreens);
         }
         
-        public async UniTask OpenScreenAsync(BaseScreen screen, bool clearPrevScreens = false)
+        public override async UniTask OpenScreenAsync(BaseScreen screen, bool clearPrevScreens = false)
         {
-            await base.OpenScreenAsync(screen);
+            await base.OpenScreenAsync(screen, clearPrevScreens);
         }
     }
 
