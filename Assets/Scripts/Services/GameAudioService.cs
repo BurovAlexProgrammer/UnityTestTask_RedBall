@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using AppCoreModule.Scripts.Audio;
-using AppCoreModule.Scripts.Services;
+﻿using AppCoreModule.Scripts.Services;
 using Settings;
-using UnityEngine;
 using Zenject;
 
 namespace Services

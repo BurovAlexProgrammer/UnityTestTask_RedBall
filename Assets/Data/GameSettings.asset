@@ -21,3 +21,5 @@ MonoBehaviour:
     AudioEvent: {fileID: 11400000, guid: f8d17ba41afa0ea43bc58ad5eb79f7cc, type: 2}
   - Key: win
     AudioEvent: {fileID: 11400000, guid: 7f3400e0d2700314284ae95dd51f75a5, type: 2}
+  - Key: click
+    AudioEvent: {fileID: 11400000, guid: 083c9f22326ee634590691c5922c9978, type: 2}

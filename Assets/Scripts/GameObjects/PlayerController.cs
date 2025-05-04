@@ -2,9 +2,11 @@
 using System.Collections;
 using AppCoreModule.Scripts.Extensions;
 using Common;
+using Cysharp.Threading.Tasks;
 using GameObjects;
 using MyBox;
 using Services;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private bool _isGrounded;
     [SerializeField, ReadOnly] private bool _enabled;
 
+    public readonly ReactiveProperty<bool> IsKnockedBack = new();
     private Coroutine _ungroundCoroutine;
     private Transform _transform;
     private Vector2 _movementSmoothVelocity;
@@ -38,6 +41,22 @@ public class PlayerController : MonoBehaviour
 
     public Health Health { get; private set; } = new();
 
+    public void TakeDamage(Vector3 contactPoint, int damage)
+    {
+        var knockBackDirection = (_transform.position - contactPoint).normalized;
+        _audioService.PlaySfx("damage");
+        ApplyKnockBack(knockBackDirection, jumpForce * knockbackForceMultiplier);
+        Health.DealDamage(damage);
+    }
+    
+    public void ApplyKnockBack(Vector2 direction, float knockbackForce)
+    {
+        _rigidbody.linearVelocity = Vector2.zero;
+        _rigidbody.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
+        IsKnockedBack.Value = true;
+        ResetKnockbackState(0.5f).Forget();
+    }
+    
     private void Awake()
     {
         _transform = transform;
@@ -57,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsEnabled || Health.IsKnockedBack.Value) return;
+        if (!IsEnabled || IsKnockedBack.Value) return;
         
         MoveBall();
         LimitSpeed();
@@ -80,11 +99,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMasks.Damage)
         {
-            var knockBackDirection = (_transform.position - collision.transform.position).normalized;
-            _audioService.PlaySfx("damage");
-            Health.ApplyKnockBack(_rigidbody, knockBackDirection, jumpForce * knockbackForceMultiplier);
-            Health.DealDamage(1);
-            
+            TakeDamage(collision.transform.position, 1);
         }
 
         if (collision.gameObject.layer == LayerMasks.Dead)
@@ -157,9 +172,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (!IsEnabled || !_isGrounded || Health.IsKnockedBack.Value) return;
+        if (!IsEnabled || !_isGrounded || IsKnockedBack.Value) return;
 
         _audioService.PlaySfx("jump");
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+    
+    private async UniTask ResetKnockbackState(float delayInSeconds)
+    {
+        await UniTask.WaitForSeconds(delayInSeconds);
+        IsKnockedBack.Value = false;
     }
 }
