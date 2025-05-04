@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         
         if (rb != null)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 10f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 10f);
         }
     }
 }

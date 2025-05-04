@@ -23,3 +23,8 @@ MonoBehaviour:
     AudioEvent: {fileID: 11400000, guid: 7f3400e0d2700314284ae95dd51f75a5, type: 2}
   - Key: click
     AudioEvent: {fileID: 11400000, guid: 083c9f22326ee634590691c5922c9978, type: 2}
+  Musics:
+  - Key: gameMusic
+    AudioEvent: {fileID: 11400000, guid: 384eaea452a44144c9071de8a735aa11, type: 2}
+  - Key: menuMusic
+    AudioEvent: {fileID: 11400000, guid: 641e1c161911415419e54383755770c3, type: 2}

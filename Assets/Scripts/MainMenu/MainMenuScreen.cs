@@ -1,14 +1,18 @@
 ﻿using System;
 using AppCoreModule.Scripts.UI.Screens;
 using Common;
+using Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zenject;
 
 namespace MainMenu
 {
     public class MainMenuScreen : BaseScreen
     {
+        [Inject] private GameAudioService _audioService;
+        
         [SerializeField] private Button _buttonExit;
         [SerializeField] private Button _startGame;
 
@@ -26,6 +30,7 @@ namespace MainMenu
 
         private void OnStart()
         {
+            _audioService.PlayMusic("gameMusic");
             SceneManager.LoadScene(SceneNames.GameScene);
         }
 

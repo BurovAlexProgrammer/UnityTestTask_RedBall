@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMasks.Ground)
+        if (collision.gameObject.layer == LayerMasks.Ground && isActiveAndEnabled)
         {
             _ungroundCoroutine ??= StartCoroutine(DelayedUnground());
         }
