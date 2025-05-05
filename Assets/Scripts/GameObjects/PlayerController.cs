@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     
     private void Awake()
     {
+        Application.targetFrameRate = 0;
         _transform = transform;
         _enabled = true;
     }
